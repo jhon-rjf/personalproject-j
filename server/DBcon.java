@@ -3,15 +3,20 @@ package server;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBcon {
+	public static String Msg = null;
 	String driver = "org.mariadb.jdbc.Driver";
     Connection con;
     PreparedStatement pstmt;
-    ResultSet rs; //쿼리문을 실행한 값을 넣는값
+   // ResultSet rs; //쿼리문을 실행한 값을 넣는값
+   // private TCPServer ts; 
+  //  String data = ts.buffer();
+   
  
+    
+    
     public DBcon() {
          try {
             Class.forName(driver); //드라이버 객체화
@@ -23,10 +28,12 @@ public class DBcon {
             if( con != null ) {
                 System.out.println("DB 접속 성공");
                 //INSERT INTO chat VALUES("정윤걸", DEFAULT, "data");
-                pstmt = con.prepareStatement("INSERT INTO CHAT VALUES(?,DEFAULT,?)");//준비완료
-                pstmt.setString(2, buffer);
+                pstmt = con.prepareStatement("INSERT INTO CHAT VALUES('admin',DEFAULT,'talk')");//준비완료
+             //   pstmt.setString(1, name);
+              //  pstmt.setString(1, buffer);
+                System.out.println(Msg);
                 pstmt.executeQuery();//쿼리문을 넣어라
-                System.out.println(buffer);
+               // System.out.println(buffer);
             }
         
            
@@ -48,8 +55,9 @@ public class DBcon {
     }
     
    
+   
     
     public static void main(String[] args){
-        DBcon dbcon    = new DBcon();
+        DBcon DBcon    = new DBcon();
     }
 }

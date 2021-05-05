@@ -21,7 +21,7 @@ public class TCPClient {
 	        Socket socket = new Socket();
 	        Scanner sc = new Scanner(System.in);
 	 
-	        InputStream is = null; // 데이터읽기
+	        InputStream is = null; // 바이트 단위로 데이터읽기
 	        InputStreamReader isr = null; // 읽은 데이터를 길게 나타냄
 	        BufferedReader br = null; // 틀
 	 

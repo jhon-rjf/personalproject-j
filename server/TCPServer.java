@@ -29,7 +29,9 @@ public class TCPServer {
         OutputStreamWriter osw = null;
         PrintWriter pw = null;
         Scanner sc = new Scanner(System.in);
- 
+       
+        DBcon db = new DBcon();
+
         try {
             // 1. Server Socket 생성
             serverSocket = new ServerSocket();
@@ -76,7 +78,9 @@ public class TCPServer {
  
                 System.out.println("[server] recived : " + buffer);
                 pw.println(buffer);
- 
+                db.Msg = buffer;
+               
+              
             }
  
             // 3.accept(클라이언트로 부터 연결요청을 기다림)
@@ -98,7 +102,13 @@ public class TCPServer {
  
         }
  
+        	
+        		
+        	}
+
+
+
     }
  
 
-}
+
