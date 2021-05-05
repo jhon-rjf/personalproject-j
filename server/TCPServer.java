@@ -30,8 +30,6 @@ public class TCPServer {
         PrintWriter pw = null;
         Scanner sc = new Scanner(System.in);
        
-        DBcon db = new DBcon();
-
         try {
             // 1. Server Socket »ý¼º
             serverSocket = new ServerSocket();
@@ -77,9 +75,13 @@ public class TCPServer {
                 }
  
                 System.out.println("[server] recived : " + buffer);
-                pw.println(buffer);
-                db.Msg = buffer;
                
+                System.out.print(">>");
+                String data2 = sc.nextLine();
+                if ("exit".equals(data2))
+                    break;
+                pw.println(data2);
+         
               
             }
  
@@ -110,5 +112,6 @@ public class TCPServer {
 
     }
  
+
 
 

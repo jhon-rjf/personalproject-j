@@ -6,16 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DBcon {
-	public static String Msg = null;
+	
+	String Msg = null;
 	String driver = "org.mariadb.jdbc.Driver";
     Connection con;
     PreparedStatement pstmt;
-   // ResultSet rs; //쿼리문을 실행한 값을 넣는값
-   // private TCPServer ts; 
-  //  String data = ts.buffer();
-   
- 
-    
     
     public DBcon() {
          try {

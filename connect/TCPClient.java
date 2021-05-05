@@ -48,14 +48,13 @@ public class TCPClient {
 	                // ÀÐ´Â°Å
 	                System.out.print(">>");
 	                String data = sc.nextLine();
-	                //System.out.print(data+"\n");
 	                if ("exit".equals(data))
 	                    break;
 	 
 	                pw.println(data);
 	 
-	                data = br.readLine();
-	                System.out.println("<< " + data);
+	               String data2 = br.readLine();
+	                System.out.println("<< " + data2);
 	 
 	            }
 	 
