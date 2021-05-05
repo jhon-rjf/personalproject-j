@@ -33,7 +33,7 @@ public class TCPClient {
 	 
 	        try {
 	            socket.connect(new InetSocketAddress(InetAddress.getLocalHost(), 6077));
-	            System.out.println("[client] 서버와 연결되었습니다.");
+	            System.out.println("[client] 서버와 연결되었습니다."+"\n"+"프로그램을 종료하시려면 exit를 입력하세요");
 	 
 	            while (true) {
 	 
@@ -55,7 +55,8 @@ public class TCPClient {
 	 
 	               String data2 = br.readLine();
 	                System.out.println("<< " + data2);
-	 
+	                if ("exit".equals(data2))
+	                    break;
 	            }
 	 
 	        } catch (IOException e) {

@@ -11,6 +11,10 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 
@@ -30,6 +34,8 @@ public class TCPServer {
         PrintWriter pw = null;
         Scanner sc = new Scanner(System.in);
        
+        
+        
         try {
             // 1. Server Socket 생성
             serverSocket = new ServerSocket();
@@ -48,7 +54,7 @@ public class TCPServer {
             Socket socket = serverSocket.accept();
             InetSocketAddress socketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
  
-            System.out.println("[server] connected by client");
+            System.out.println("[server] connected by client"+"\n"+"프로그램을 종료하시려면 exit를 입력하세요");
             System.out.println("[server] Connect with " + socketAddress.getHostString() + " " + socket.getPort());
  
             while (true) {
@@ -78,8 +84,7 @@ public class TCPServer {
                
                 System.out.print(">>");
                 String data2 = sc.nextLine();
-                if ("exit".equals(data2))
-                    break;
+                
                 pw.println(data2);
          
               
@@ -105,10 +110,64 @@ public class TCPServer {
         }
  
         	
-        		
+      
         	}
-
-
+ // class DBcon 쓰레드 활성화
+   // while문으로 계속 돌리기
+    // pstmt.setString을 활용하여 채팅 데이터 쿼리문으로 옮기기
+    
+    public class DBcon extends Thread{
+    		@Override
+    		public void run() {
+    			
+    			String driver = "org.mariadb.jdbc.Driver";
+    		    Connection con;
+    		    PreparedStatement pstmt;
+    		    
+    		   
+    		    	
+    		         try {
+    		            Class.forName(driver); //드라이버 객체화
+    		            con = DriverManager.getConnection( //db와 연결
+    		                    "jdbc:mariadb://127.0.0.1:3309/test",
+    		                    "root",
+    		                    "dygks0917");
+    		            
+    		            if( con != null ) {
+    		            	
+    		                System.out.println("DB 접속 성공");
+    		                //INSERT INTO chat VALUES("정윤걸", DEFAULT, "data");
+    		                pstmt = con.prepareStatement("INSERT INTO CHAT VALUES('admin',DEFAULT,'talk')");//준비완료
+    		             //   pstmt.setString(1, name);
+    		              //  pstmt.setString(1, buffer);
+    		                
+    		                pstmt.executeQuery();//쿼리문을 넣어라
+    		               // System.out.println(buffer);
+    		            }
+    		        
+    		           
+    		            
+    		        } catch (ClassNotFoundException e) { 
+    		            System.out.println("드라이버 로드 실패");
+    		        } catch (SQLException e) {
+    		            System.out.println("DB 접속 실패");
+    		            e.printStackTrace();
+    		        }
+    		         try {
+    		 			
+    		 			System.out.println("쿼리성공");
+    		 		}catch(Exception e) {
+    		 			e.printStackTrace();
+    		 			System.out.println("쿼리실패");
+    		 		}
+    		         
+    		    
+    		
+    		
+    		
+    	
+    }
+    }
 
     }
  
