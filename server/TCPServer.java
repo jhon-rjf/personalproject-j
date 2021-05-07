@@ -17,7 +17,8 @@ import java.util.Scanner;
 public class TCPServer {
 	public static final int PORT = 6077;
 	 
-    public static void main(String[] args) {
+    @SuppressWarnings("deprecation")
+	public static void main(String[] args) {
  
         ServerSocket serverSocket = null;
  
@@ -67,6 +68,7 @@ public class TCPServer {
  
                 String buffer = null;
                 buffer = br.readLine(); // Blocking
+                
                 if (buffer == null) {
  
                     // 정상종료 : remote socket close()
@@ -84,7 +86,9 @@ public class TCPServer {
                 pw.println(data2);
                 DB.Msg = buffer;
                 if ("save".equals(data2)) {
-                	DB.start();
+                	 
+                	DB.run();
+                	
                 }
             }
    

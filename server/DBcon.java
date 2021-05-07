@@ -18,11 +18,13 @@ public class DBcon extends Thread {
     		
     	
          try {
+        	 if(con==null) {
             Class.forName(driver); //드라이버 객체화
             con = DriverManager.getConnection( //db와 연결
                     "jdbc:mariadb://127.0.0.1:3309/test",
                     "root",
                     "dygks0917");
+        	 }
             
             if( con != null ) {
                 System.out.println("DB 접속 성공");
@@ -33,7 +35,6 @@ public class DBcon extends Thread {
                 System.out.println(Msg);
                 pstmt.executeQuery();//쿼리문을 넣어라
                 Msg = null;
-             
             }
         
            
@@ -53,7 +54,7 @@ public class DBcon extends Thread {
  		}
     	}      
     
-    
+   
     
    
    
