@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class TCPServer {
 	public static final int PORT = 6077;
 	 
-    @SuppressWarnings("deprecation")
+   
 	public static void main(String[] args) {
  
         ServerSocket serverSocket = null;
@@ -31,7 +31,7 @@ public class TCPServer {
         PrintWriter pw = null;
         Scanner sc = new Scanner(System.in);
        DBcon DB = new DBcon();
-      // DB.start();
+      
         
         try {
             // 1. Server Socket 생성
@@ -84,23 +84,25 @@ public class TCPServer {
                 String data2 = sc.nextLine();
                 
                 pw.println(data2);
-                DB.Msg = buffer;
-                if ("save".equals(data2)) {
-                	 
-                	DB.run();
+           
                 	
+                
+                if ("save".equals(data2)) {
+                	 DB.Msg = buffer;
+                	DB.run();
+                	//쿼리 다른것 추가 필요
                 }
             }
    
             // 3.accept(클라이언트로 부터 연결요청을 기다림)
             // .. blocking 되면서 기다리는중, connect가 들어오면 block이 풀림
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) { //입출력에 관련한 오류가 났을때
+            e.printStackTrace();//리턴값이 없다.
         } finally {
  
             try {
  
-                if (serverSocket != null && !serverSocket.isClosed())
+                if (serverSocket != null && !serverSocket.isClosed()) //소캣이 닫혀있지 않을 때 
                     serverSocket.close();
  
             } catch (Exception e) {
@@ -108,7 +110,14 @@ public class TCPServer {
             }
  
             sc.close();
- 
+            try {
+               DB.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+           
+            DB.interrupt();
+            System.out.println("Thread closed");
         }
  
         	
