@@ -27,15 +27,24 @@ public class DBcon extends Thread {
         	 }
             
             if( con != null ) {
-                System.out.println("DB 접속 성공");
+                System.out.println("DB 접속 성공"+"\n"+"1.저장"+"\n"+"2.직전 기록 삭제");
                 
+                int i = sc.nextInt();
+                if ( i == 1) { //insert (save)
                 pstmt = con.prepareStatement("INSERT INTO CHAT VALUES('admin',DEFAULT,?)");//준비완료
                 pstmt.setString(1, Msg);
-            
-                System.out.println(Msg);
+                System.out.println("저장중입니다.");
+                }
+                else if ( i == 2) { //delete (previous delete)
+                pstmt = con.prepareStatement("DELETE FROM CHAT WHERE talk = ?");//준비완료
+                pstmt.setString(1, Msg);
+                }
+                else {System.out.println("올바른 값을 입력해 주시기 바랍니다.");}
+//                System.out.println(Msg);
                 pstmt.executeQuery();//쿼리문을 넣어라
                 pstmt.close();
                 
+             
             }
         
            

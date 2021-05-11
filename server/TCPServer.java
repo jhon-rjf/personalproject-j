@@ -87,7 +87,7 @@ public class TCPServer {
            
                 	
                 
-                if ("save".equals(data2)) {
+                if ("!command".equals(data2)) {
                 	 DB.Msg = buffer;
                 	DB.run();
                 	//쿼리 다른것 추가 필요
