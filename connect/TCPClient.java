@@ -1,5 +1,5 @@
 package connect;
-
+//123
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,24 +16,24 @@ import java.util.Scanner;
 public class TCPClient {
 	 public static void main(String[] args) {
 		 
-	        // Å¬¶óÀÌ¾ðÆ® ¼ÒÄÏ »ý¼º
+	        // í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ ìƒì„±
 	 
 	        Socket socket = new Socket();
 	        Scanner sc = new Scanner(System.in);
 	 
-	        InputStream is = null; // ¹ÙÀÌÆ® ´ÜÀ§·Î µ¥ÀÌÅÍÀÐ±â
-	        InputStreamReader isr = null; // ÀÐÀº µ¥ÀÌÅÍ¸¦ ±æ°Ô ³ªÅ¸³¿
-	        BufferedReader br = null; // Æ²
+	        InputStream is = null; // ë°”ì´íŠ¸ ë‹¨ìœ„ë¡œ ë°ì´í„°ì½ê¸°
+	        InputStreamReader isr = null; // ì½ì€ ë°ì´í„°ë¥¼ ê¸¸ê²Œ ë‚˜íƒ€ëƒ„
+	        BufferedReader br = null; // í‹€
 	 
-	        OutputStream os = null; // µ¥ÀÌÅÍ º¸³»±â
-	        OutputStreamWriter osw = null; // º¸³¾ µ¥ÀÌÅÍ¸¦ º¸³¿
-	        PrintWriter pw = null; // È­¸é¿¡ ³ª¿À°Ô ÇÏ´Â¾Ö
+	        OutputStream os = null; // ë°ì´í„° ë³´ë‚´ê¸°
+	        OutputStreamWriter osw = null; // ë³´ë‚¼ ë°ì´í„°ë¥¼ ë³´ëƒ„
+	        PrintWriter pw = null; // í™”ë©´ì— ë‚˜ì˜¤ê²Œ í•˜ëŠ”ì• 
 	 
 	        // new InetSocketAddress(InetAddress.getLocalHost() 6077
 	 
 	        try {
 	            socket.connect(new InetSocketAddress(InetAddress.getLocalHost(), 6077));
-	            System.out.println("[client] ¼­¹ö¿Í ¿¬°áµÇ¾ú½À´Ï´Ù."+"\n"+"ÇÁ·Î±×·¥À» Á¾·áÇÏ½Ã·Á¸é exit¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+	            System.out.println("[client] ì„œë²„ì™€ ì—°ê²°ë˜ì—ˆìŠµë‹ˆë‹¤."+"\n"+"í”„ë¡œê·¸ëž¨ì„ ì¢…ë£Œí•˜ì‹œë ¤ë©´ exitë¥¼ ìž…ë ¥í•˜ì„¸ìš”");
 	 
 	            while (true) {
 	 
@@ -45,7 +45,7 @@ public class TCPClient {
 	                osw = new OutputStreamWriter(os, "UTF-8");
 	                pw = new PrintWriter(osw, true);
 	 
-	                // ÀÐ´Â°Å
+	                // ì½ëŠ”ê±°
 	                System.out.print(">>");
 	                String data = sc.nextLine();
 	                if ("exit".equals(data))
